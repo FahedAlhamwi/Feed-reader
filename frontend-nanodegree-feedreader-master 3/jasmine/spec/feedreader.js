@@ -14,8 +14,7 @@ $(function() {
     * feeds definitions, the allFeeds variable in our application.
     */
 
-    var startEntries,
-        endEntries;
+    
         
     describe('RSS Feeds', function() {
         /* This is our first test - it tests to make sure that the
@@ -96,8 +95,8 @@ $(function() {
                 done();
             });
         });
-        it ('define if entry has more than 0 enties', function () {
-        expect($('.entry .feed')).toBeDefined();
+        it('are present', function() {
+            expect($('.feed .entry').length).toBeGreaterThan(0);
         });
     });
     
