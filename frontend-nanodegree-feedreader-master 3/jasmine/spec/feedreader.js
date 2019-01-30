@@ -104,26 +104,27 @@ $(function() {
 
         
 
-    /* A new test suite named "New Feed Selection" */
-    describe('New Feed Selection', function () {
+     /* A new test suite named "New Feed Selection" */
+     describe('New Feed Selection', function () {
         /* A test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
-        beforeEach(function (done) {
-            $('.feed').empty();
-            loadFeed(0, function () {
-                startEntries = $('.feed').find(allFeeds.url);
-                done();
-            });
-            loadFeed(1, function () {
-                endEntries = $('.feed').find(allFeeds.url);
-                done();
+        let oldFeed;
+
+        beforeEach(function(done) {
+            loadFeed(0, function() {
+                    // store old feed
+                    oldFeed = $('.feed').html();
+                    // fetch newer feed
+                    loadFeed(1, done);
             });
         });
-        it ('new feed is different to old one', function () {
-            expect(startEntries).not.toBe(endEntries);
+    
+        it('is different from old', function() {
+                expect($('.feed').html()).not.toBe(oldFeed);
         });
+        
     });
 
         
